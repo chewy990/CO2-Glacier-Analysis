@@ -42,3 +42,8 @@ Generated in `archive/`:
 ```bash
 pip install -r requirements.txt
 jupyter notebook co2-glacier-analysis.ipynb
+```
+
+## Screenshot
+<img width="1026" height="636" alt="log_scale_graph" src="https://github.com/user-attachments/assets/89c259ce-a20a-4773-92a4-6a1407ddf5a1" />
+
