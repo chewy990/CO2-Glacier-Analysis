@@ -4,15 +4,17 @@
 [![Pandas](https://img.shields.io/badge/Pandas-2.0-green)](pandas.pydata.org)
 
 ## Project Overview
-Analyzed global CO₂ emissions (1750–2020) vs glacier melt (1900–2000) using data from World Bank, Global Carbon Project, and NSIDC. Built complete ETL pipeline + statistical analysis.
+I wanted to see if rising CO₂ emissions were causing glaciers to melt faster. Used data from 1750-2020 (CO₂) and 1900-2000 (glaciers) from World Bank, Global Carbon Project, and NSIDC.
 
 **Key Findings:**
 - Correlation: r=0.275 (CO₂ vs glacier area)
 - Polynomial regression: R²=0.0007 
 - Processed 272+ years of climate data
 
-## Business Value
-Demonstrates skills in ETL pipelines, data quality handling (outliers, imputation), statistical analysis (correlation, regression), and climate impact assessment.
+## ETL Process
+1. EXTRACT: Web-scraped Macrotrends (Selenium) + GCP/NSIDC CSVs
+2. TRANSFORM: Outliers, missing values (linear imputation), merged datasets
+3. LOAD: 5 cleaned CSVs for analysis
 
 ## Data Sources
 Three sources in `archive/` folder:
