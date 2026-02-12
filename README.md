@@ -1,49 +1,59 @@
-# CO2-Glacier Analysis
+# CO₂–Glacier Climate Analysis
 
-[![Python](https://img.shields.io/badge/Python-3.9-blue)](https://python.org) 
-[![Pandas](https://img.shields.io/badge/Pandas-2.0-green)](pandas.pydata.org)
+## Objective
 
-## Project Overview
-I wanted to see if rising CO₂ emissions were causing glaciers to melt faster. Used data from 1750-2020 (CO₂) and 1900-2000 (glaciers) from World Bank, Global Carbon Project, and NSIDC.
+Built an end-to-end data pipeline to evaluate whether long-term CO₂ growth correlates with measurable glacier change.
 
-**Key Findings:**
-- Correlation: r=0.275 (CO₂ vs glacier area)
-- Polynomial regression: R²=0.0007 
-- Processed 272+ years of climate data
+---
 
-## ETL Process
-1. EXTRACT: Web-scraped Macrotrends (Selenium) + GCP/NSIDC CSVs
-2. TRANSFORM: Outliers, missing values (linear imputation), merged datasets
-3. LOAD: 5 cleaned CSVs for analysis
+## Dataset
 
-## Data Sources
-Three sources in `archive/` folder:
-1. `scraped_data.json` – Backup JSON (Macrotrends/World Bank)
-2. `GCB2022v27_MtCO2_flat.csv` – Global Carbon Project CO₂
-3. `database_glacier.csv` – NSIDC glacier dataset
+- 272+ years of CO₂ emissions (1750–2020)
+- 100,000+ glacier records (1900–2000)
+- Sources: World Bank, Global Carbon Project, NSIDC
 
-## Output Files
-Generated in `archive/`:
-1. `cleaned_co2_30_years.csv`
-2. `cleaned_co2_3_centuries.csv`
-3. `merged_co2_data.csv`
-4. `cleaned_glacier_data.csv`
-5. `merged_co2_glacier_data.csv`
+---
+
+## Approach
+
+### Data Engineering
+- Web-scraped CO₂ data using Selenium (with JSON fallback)
+- Merged multi-century climate datasets
+- Outlier detection (IQR filtering)
+- Time alignment and yearly aggregation
+
+### Missing Data Handling
+- Median imputation
+- Linear regression-based imputation
+- IterativeImputer for temporal reconstruction
+- Cross-validation (MAE, R²) for model evaluation
+
+### Statistical Analysis
+- Pearson correlation testing
+- Time-lag analysis (±10 years)
+- Polynomial regression modelling
+- Log-scale visualisation for multi-order magnitude comparison
+
+---
+
+## Key Results
+
+- Weak positive correlation between CO₂ and glacier area (r ≈ 0.27)
+- Statistically significant p-values influenced by large sample size
+- Very low regression explanatory power (R² ≈ 0.0007)
+- Demonstrates the distinction between statistical significance and practical predictive strength
+
+---
 
 ## Tech Stack
-| Category      | Tools                    |
-|---------------|--------------------------|
-| Data          | Pandas, NumPy           |
-| Visualization | Matplotlib, Seaborn     |
-| ML            | Scikit-learn            |
-| Scraping      | Selenium                |
 
-## Quick Start
+Python • Pandas • NumPy • Scikit-learn • Selenium • Matplotlib • Seaborn • SciPy
+
+---
+
+## Run Locally
+
 ```bash
 pip install -r requirements.txt
 jupyter notebook co2-glacier-analysis.ipynb
 ```
-
-## Screenshot
-<img width="1026" height="636" alt="log_scale_graph" src="https://github.com/user-attachments/assets/89c259ce-a20a-4773-92a4-6a1407ddf5a1" />
-
