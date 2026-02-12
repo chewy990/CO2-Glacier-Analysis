@@ -4,6 +4,8 @@
 
 Built an end-to-end data pipeline to evaluate whether long-term CO₂ growth correlates with measurable glacier change.
 
+**Core Focus:** Large-scale data cleaning, imputation strategy, and statistical validation under high missingness.
+
 ---
 
 ## Dataset
@@ -11,6 +13,15 @@ Built an end-to-end data pipeline to evaluate whether long-term CO₂ growth cor
 - 272+ years of CO₂ emissions (1750–2020)
 - 100,000+ glacier records (1900–2000)
 - Sources: World Bank, Global Carbon Project, NSIDC
+
+---
+
+## Data Challenges
+
+- Glacier dataset contained up to 40%+ missing values in key features
+- Multiple time columns required reconstruction and alignment
+- CO₂ data spanned 272 years across overlapping sources
+- Large sample size introduced statistical significance bias
 
 ---
 
@@ -22,11 +33,17 @@ Built an end-to-end data pipeline to evaluate whether long-term CO₂ growth cor
 - Outlier detection (IQR filtering)
 - Time alignment and yearly aggregation
 
-### Missing Data Handling
-- Median imputation
-- Linear regression-based imputation
-- IterativeImputer for temporal reconstruction
-- Cross-validation (MAE, R²) for model evaluation
+### Missing Data Strategy
+
+The glacier dataset contained substantial missingness across structural variables.
+
+To preserve analytical validity:
+
+- Applied median imputation for structural stability
+- Built regression models to estimate missing elevation and width values
+- Used IterativeImputer to reconstruct temporal variables
+- Evaluated imputation quality using MAE, R², and cross-validation
+
 
 ### Statistical Analysis
 - Pearson correlation testing
@@ -42,6 +59,7 @@ Built an end-to-end data pipeline to evaluate whether long-term CO₂ growth cor
 - Statistically significant p-values influenced by large sample size
 - Very low regression explanatory power (R² ≈ 0.0007)
 - Demonstrates the distinction between statistical significance and practical predictive strength
+- Processed and cleaned 100,000+ glacier records with multi-stage imputation and validation.
 
 ---
 
