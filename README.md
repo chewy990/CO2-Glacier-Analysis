@@ -1,4 +1,4 @@
-# CO2-Glacier Analysis (Programming with Data)
+# CO2-Glacier Analysis
 
 [![Python](https://img.shields.io/badge/Python-3.9-blue)](https://python.org) 
 [![Pandas](https://img.shields.io/badge/Pandas-2.0-green)](pandas.pydata.org)
